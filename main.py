@@ -1,4 +1,6 @@
 import re
+from sklearn.model_selection import train_test_split
+
 
 mykeywords = ["发动机","控制","失效","部件","故障","系统","航空器","疲劳","断裂","泄漏","失灵"]
 
@@ -39,6 +41,24 @@ import numpy as np
 X = np.array(x_vector)
 y = np.array(y1_label)
 
-clf = make_pipeline(StandardScaler(), SVC(gamma='auto'))
-clf.fit(X, y)
+#clf = make_pipeline(StandardScaler(), SVC(gamma='auto'))
+
+X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2)
+
+
+clf = SVC()
+clf.fit(X_train, y_train)
+
+loss1 = np.power(clf.predict(X_train)-y_train,2).sum()/y_train.size
+
+X_train1 = X_train>=1
+
+# clf = make_pipeline(StandardScaler(), SVC(gamma='auto'))
+
+clf.fit(X_train1, y_train)
+
+loss2 = np.power(clf.predict(X_train1)-y_train,2).sum()/y_train.size
+
+print(loss1)
+print(loss2)
 
