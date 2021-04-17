@@ -47,3 +47,5 @@ for i in range(len(myclasses)):
            y_dataset[i].append(1)
         else:
             y_dataset[i].append(0)
+
+m = np.matrix(y_dataset)
