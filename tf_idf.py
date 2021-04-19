@@ -4,6 +4,18 @@ import numpy as np
 def tf(text,document):
     return  log10(document.count(text)+1)
 
+def df(texts, documents):
+    if type(texts) == str:
+        texts = list(texts)
+    dfs = []
+    for text in texts:
+        df = 0
+        for document in documents:
+            if (text in document):
+                df += 1
+        dfs.append(log10(df))
+    return dict(zip(texts,dfs))
+
 def idf(text, documents):
     df = 0
     for document in documents:
@@ -23,5 +35,4 @@ def tf_idf(texts, document, documents):
     for text in texts:
         idfs = np.append(idfs, idf(text, documents))
 
-    return tfs*idfs
-
+    return dict(zip(texts, tfs*idfs))

@@ -1,6 +1,8 @@
 import pandas
-import thulac
+# import thulac
 import numpy as np
+
+
 
 file_path = "data.xlsx"
 
@@ -27,20 +29,11 @@ myclasses = ["航空器系统/部件失效",
              "运营管理问题",
              "程序规章手册缺陷",
              "安检空管维修资质等其它"]
+from ltp import LTP
+ltp = LTP()
 
-lac = thulac.thulac(filt=True,seg_only=True)
-
-X_cut=list()
-for text in X:
-    X_cut.append(lac.cut(text))
-
-X_dataset = list()
-for item in X_cut:
-    item = np.mat(item)[:,0].squeeze().tolist()[0]
-    X_dataset.append(item)
-
+X_dataset, _ = ltp.seg(X.tolist())
 X_dataset = np.array(X_dataset, dtype=object)
-
 y_dataset = [[],[],[],[],[],[],[],[]]
 
 for i in range(len(myclasses)):
@@ -50,7 +43,7 @@ for i in range(len(myclasses)):
         else:
             y_dataset[i].append(0)
 
-y_dataset = np.mat(y_dataset)
+y_datatset = np.mat(y_dataset)
 
-np.save("X_lac.npy",X_dataset)
-np.save("y_lac.npy",y_dataset)
+np.save("X_ltp.npy", X_dataset)
+np.save("y_ltp.npy",y_dataset)
