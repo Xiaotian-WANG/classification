@@ -3,6 +3,15 @@ from zhon import hanzi
 import string
 from tf_idf import tf_idf, tf, idf, df
 
+myclasses_dict = {"航空器系统/部件失效":0,
+             "航空器设计制造缺陷":1,
+             "机务人员致灾":2,
+             "机组人员致灾":3,
+             "零件生产质量问题":4,
+             "运营管理问题":5,
+             "程序规章手册缺陷":6,
+             "安检空管维修资质等其它":7}
+
 def get_frequency(X):
     word_frequency = {}
 
@@ -20,15 +29,18 @@ def get_frequency(X):
     word_frequency.sort(key=lambda x: x[1], reverse=True)
     return word_frequency
 
-X = np.load("X_lac.npy",allow_pickle=True)
+X = np.load("X_lac.npy", allow_pickle=True)
 y = np.load("y_lac.npy")
 
-wholetext1 = X[np.where(y[3] == 1)]
+
+num = myclasses_dict["航空器设计制造缺陷"]
+
+wholetext1 = X[np.where(y[num] == 1)]
 wholetext = []
 for doc in wholetext1:
     wholetext = wholetext+doc
 
-therest = np.delete(X,np.where(y[3]==1))
+therest = np.delete(X,np.where(y[num]==1))
 
 
 
