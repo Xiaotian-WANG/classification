@@ -23,12 +23,12 @@ def get_frequency(X):
 X = np.load("X_lac.npy",allow_pickle=True)
 y = np.load("y_lac.npy")
 
-wholetext1 = X[np.where(y[4]==1)]
+wholetext1 = X[np.where(y[3] == 1)]
 wholetext = []
 for doc in wholetext1:
     wholetext = wholetext+doc
 
-therest = np.delete(X,np.where(y[4]==1))
+therest = np.delete(X,np.where(y[3]==1))
 
 
 
