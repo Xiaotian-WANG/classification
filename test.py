@@ -33,7 +33,7 @@ X = np.load("X_lac.npy", allow_pickle=True)
 y = np.load("y_lac.npy")
 
 
-num = myclasses_dict["航空器设计制造缺陷"]
+num = myclasses_dict["程序规章手册缺陷"]
 
 wholetext1 = X[np.where(y[num] == 1)]
 wholetext = []
@@ -52,10 +52,10 @@ documents = [wholetext]
 for item in therest:
     documents.append(item)
 
-a = tf_idf(wordlist,wholetext,documents)
-b = df(wordlist,wholetext1)
+a = tf_idf(wordlist, wholetext, documents)
+b = df(wordlist, wholetext1)
 
-c = dict(zip(a.keys(),np.array(list(a.values()))*np.array(list(b.values())).tolist()))
+c = dict(zip(a.keys(), np.array(list(a.values()))*np.array(list(b.values())).tolist()))
 
 c = list(c.items())
 c.sort(key=lambda x: x[1], reverse=True)

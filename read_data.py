@@ -28,7 +28,7 @@ myclasses = ["航空器系统/部件失效",
              "程序规章手册缺陷",
              "安检空管维修资质等其它"]
 
-lac = thulac.thulac(filt=True,seg_only=True)
+lac = thulac.thulac(filt=True,seg_only=True,user_dict="cidian.txt")
 
 X_cut=list()
 for text in X:
