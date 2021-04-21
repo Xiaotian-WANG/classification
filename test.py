@@ -33,7 +33,7 @@ X = np.load("X_lac.npy", allow_pickle=True)
 y = np.load("y_lac.npy")
 
 
-num = myclasses_dict["程序规章手册缺陷"]
+num = myclasses_dict["运营管理问题"]
 
 wholetext1 = X[np.where(y[num] == 1)]
 wholetext = []

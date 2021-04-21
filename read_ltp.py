@@ -2,8 +2,6 @@ import pandas
 # import thulac
 import numpy as np
 
-
-
 file_path = "data.xlsx"
 
 data = pandas.read_excel(file_path, sheet_name="原始数据",engine="openpyxl")
